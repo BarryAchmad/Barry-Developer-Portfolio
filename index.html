@@ -40,6 +40,119 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05);
         }
+        
+        /* AI Chat Styles - Light Mode */
+        #chat-bubble {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: #3b82f6;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+        #chat-bubble:hover {
+            transform: scale(1.1);
+        }
+        #chat-widget {
+            position: fixed;
+            bottom: 7rem;
+            right: 2rem;
+            width: 90%;
+            max-width: 400px;
+            height: 500px;
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 1rem;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            transform: translateY(20px);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        #chat-widget.visible {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+        #chat-header {
+            padding: 1rem;
+            background-color: #f3f4f6;
+            color: #111827;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        #close-chat {
+            background: none;
+            border: none;
+            color: #6b7280;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        #chat-messages {
+            flex-grow: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            background-color: #f9fafb;
+        }
+        .message {
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            max-width: 80%;
+        }
+        .user-message {
+            background-color: #3b82f6;
+            color: white;
+            align-self: flex-end;
+        }
+        .ai-message {
+            background-color: #e5e7eb;
+            color: #1f2937;
+            align-self: flex-start;
+        }
+        #chat-input-container {
+            border-top: 1px solid #e5e7eb;
+            padding: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            background-color: #ffffff;
+        }
+        #chat-input {
+            flex-grow: 1;
+            background-color: #f3f4f6;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            color: #111827;
+            outline: none;
+        }
+        #send-button {
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -126,8 +239,8 @@
                         <p class="text-gray-600 flex-grow">A simple web-based game to train your mouse clicking speed and accuracy.</p>
                         <div class="mt-4 flex flex-wrap gap-2">
                             <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">HTML</span>
-                            <span class="bg-blue-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded-full">CSS</span>
-                            <span class="bg-blue-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded-full">JavaScript</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded-full">CSS</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded-full">JavaScript</span>
                         </div>
                         <div class="mt-6 pt-4 border-t border-gray-200 flex items-center justify-between">
                             <a href="https://barry21highpotential.github.io/Aim-Game-v1/" target="_blank" rel="noopener noreferrer" class="inline-block px-5 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300 text-sm">
@@ -144,8 +257,8 @@
                         <p class="text-gray-600 flex-grow">A digital stopwatch application with start, stop, and reset functionality, built with a clean interface.</p>
                         <div class="mt-4 flex flex-wrap gap-2">
                             <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">HTML</span>
-                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">CSS</span>
-                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">JavaScript</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded-full">CSS</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded-full">JavaScript</span>
                         </div>
                         <div class="mt-6 pt-4 border-t border-gray-200 flex items-center justify-between">
                             <a href="https://barry21highpotential.github.io/Stop-Watch/" target="_blank" rel="noopener noreferrer" class="inline-block px-5 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300 text-sm">
@@ -199,7 +312,7 @@
                     <img src="Sales Dashboard.png" alt="Excel Dashboard Example" class="w-full h-48 object-cover">
                     <div class="p-6 flex flex-col flex-grow">
                         <h3 class="text-xl font-bold text-gray-900 mb-2">Sales Dashboard (Tableau)</h3>
-                        <p class="text-gray-600 flex-grow">An interactive Sales Dashboard in Tableau to analyze sales performance, showing total sales, profit, and quantity growth compared to last year. It includes category-level breakdowns, profit/loss insights, and time-based trends to identify peak and low months.</p>
+                        <p class="text-gray-600 flex-grow">An interactive Sales Dashboard in Tableau to analyze sales performance, showing total sales, profit, and quantity growth compared to last year.</p>
                         <div class="mt-4 flex flex-wrap gap-2">
                             <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Tableau</span>
                             <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Excel</span>
@@ -215,7 +328,7 @@
                     <img src="Customer Dashboard.png" alt="Tableau Dashboard Example" class="w-full h-48 object-cover">
                     <div class="p-6 flex flex-col flex-grow">
                         <h3 class="text-xl font-bold text-gray-900 mb-2">Customer Dashboard (Tableau)</h3>
-                        <p class="text-gray-600 flex-grow">An interactive Customer Dashboard in Tableau to analyze customer performance in 2023. It highlights total customers, sales per customer, and total orders compared to last year. The dashboard also shows customer distribution by number of orders and the top 10 customers ranked by profit, helping identify key accounts and growth opportunities.</p>
+                        <p class="text-gray-600 flex-grow">An interactive Customer Dashboard in Tableau to analyze customer performance in 2023, helping identify key accounts and growth opportunities.</p>
                         <div class="mt-4 flex flex-wrap gap-2">
                             <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Tableau</span>
                             <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Excel</span>
@@ -231,7 +344,7 @@
                     <img src="SalesReport-VBA.png" alt="VBA Sales Report" class="w-full h-48 object-cover">
                     <div class="p-6 flex flex-col flex-grow">
                         <h3 class="text-xl font-bold text-gray-900 mb-2">SalesReport-VBA</h3>
-                        <p class="text-gray-600 flex-grow">An interactive Sales Report Dashboard built with VBA to analyze sales data. It includes dynamic slicers (day, month, year), charts for sales, profit, and quantity, regional and segment performance, shipping analysis, and yearly profit trends.</p>
+                        <p class="text-gray-600 flex-grow">An interactive Sales Report Dashboard built with VBA to analyze sales data, including dynamic slicers and charts for key metrics.</p>
                         <div class="mt-4 flex flex-wrap gap-2">
                             <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Excel</span>
                              <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded-full">VBA</span>
@@ -247,7 +360,7 @@
                     <img src="HR Dashboard.png" alt="VBA Sales Report" class="w-full h-48 object-cover">
                     <div class="p-6 flex flex-col flex-grow">
                         <h3 class="text-xl font-bold text-gray-900 mb-2">HR Dashboard</h3>
-                        <p class="text-gray-600 flex-grow">An interactive Human Resources Dashboard in Tableau to analyze employee data, including hires, terminations, demographics, departments, locations, income, and performance. It provides insights with dynamic charts and filters to support workforce planning and decision-making.</p>
+                        <p class="text-gray-600 flex-grow">An interactive HR Dashboard in Tableau to analyze employee data, including hires, terminations, demographics, and performance.</p>
                         <div class="mt-4 flex flex-wrap gap-2">
                             <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Tableau</span>
                             <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Excel</span>
@@ -321,21 +434,41 @@
     <footer class="text-center py-8 border-t border-gray-200">
         <p class="text-gray-500">&copy; 2025 Barry. All Rights Reserved.</p>
     </footer>
+    
+    <!-- AI Chat Bubble -->
+    <div id="chat-bubble">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.837 8.837 0 01-4.445-1.232l-1.103.662a.5.5 0 01-.63-.63l.662-1.103A8.837 8.837 0 012 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM4.5 9a.5.5 0 000 1h1a.5.5 0 000-1h-1zM7 9.5a.5.5 0 01.5-.5h4a.5.5 0 010 1h-4a.5.5 0 01-.5-.5z" clip-rule="evenodd" />
+        </svg>
+    </div>
+
+    <!-- AI Chat Widget -->
+    <div id="chat-widget">
+        <div id="chat-header">
+            <span>AI Portfolio Assistant</span>
+            <button id="close-chat">&times;</button>
+        </div>
+        <div id="chat-messages">
+            <div class="message ai-message">Hello! I'm Bari's AI assistant. Ask me anything about his projects or skills.</div>
+        </div>
+        <div id="chat-input-container">
+            <input type="text" id="chat-input" placeholder="Type your message...">
+            <button id="send-button">Send</button>
+        </div>
+    </div>
 
     <script>
-        // JavaScript for mobile menu toggle
+        // --- Mobile Menu Toggle ---
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
-
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
 
-        // JavaScript for copying email to clipboard
+        // --- Email Copy to Clipboard ---
         const copyButton = document.getElementById('copy-button');
         const emailText = document.getElementById('email').textContent;
         const copyFeedback = document.getElementById('copy-feedback');
-
         copyButton.addEventListener('click', () => {
             const tempTextArea = document.createElement('textarea');
             tempTextArea.value = emailText;
@@ -344,14 +477,132 @@
             try {
                 document.execCommand('copy');
                 copyFeedback.style.opacity = '1';
-                setTimeout(() => {
-                    copyFeedback.style.opacity = '0';
-                }, 2000);
+                setTimeout(() => { copyFeedback.style.opacity = '0'; }, 2000);
             } catch (err) {
                 console.error('Failed to copy text: ', err);
             }
             document.body.removeChild(tempTextArea);
         });
+
+        // --- AI Chat Widget Logic ---
+        const chatBubble = document.getElementById('chat-bubble');
+        const chatWidget = document.getElementById('chat-widget');
+        const closeChatButton = document.getElementById('close-chat');
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+        const sendButton = document.getElementById('send-button');
+        
+        // --- Portfolio Context for the AI ---
+        const portfolioContext = `
+            You are Bari's friendly and professional AI Portfolio Assistant. 
+            Your goal is to answer questions from visitors, like recruiters or potential collaborators, based on the information provided below.
+            Keep your answers concise, helpful, and always positive.
+
+            ---
+            ABOUT BARI:
+            - Name: Bari, a student from Tangerang Selatan, Indonesia.
+            - Passion: Loves learning about coding and technology.
+            - Skills: Web development (HTML, CSS, JavaScript), Python, C++, Lua, and data analysis tools like Excel and Tableau.
+            - Goal: This portfolio shares his journey, what he's learning, what he can build, and how he's growing as a developer.
+
+            PROJECTS:
+            1.  Tic Tac Toe: A classic web game using HTML, CSS, and JavaScript.
+            2.  Aim Game v1: A web-based game to train mouse-clicking speed and accuracy, built with HTML, CSS, and JavaScript.
+            3.  Stop Watch: A digital stopwatch web application with start, stop, and reset functionality.
+            4.  Sales Dashboard (Tableau): An interactive dashboard analyzing sales performance, profit, and growth trends.
+            5.  Customer Dashboard (Tableau): A dashboard analyzing customer performance, identifying key accounts and growth opportunities.
+            6.  SalesReport-VBA: An interactive sales report in Excel automated with VBA, featuring dynamic slicers and charts.
+            7.  HR Dashboard (Tableau): A dashboard for analyzing employee data like hires, terminations, demographics, and performance.
+            ---
+        `;
+
+        let chatHistory = [{ role: "user", parts: [{ text: portfolioContext }] }];
+
+        chatBubble.addEventListener('click', () => {
+            chatWidget.classList.toggle('visible');
+        });
+
+        closeChatButton.addEventListener('click', () => {
+            chatWidget.classList.remove('visible');
+        });
+
+        sendButton.addEventListener('click', handleSendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                handleSendMessage();
+            }
+        });
+
+        function addMessage(text, sender) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', `${sender}-message`);
+            messageElement.textContent = text;
+            chatMessages.appendChild(messageElement);
+            chatMessages.scrollTop = chatMessages.scrollHeight; // Auto-scroll to bottom
+        }
+
+        async function handleSendMessage() {
+            const userInput = chatInput.value.trim();
+            if (userInput === '') return;
+
+            addMessage(userInput, 'user');
+            chatInput.value = '';
+            
+            addMessage('...', 'ai'); // Typing indicator
+
+            try {
+                const aiResponse = await getAIResponse(userInput);
+                // Remove typing indicator
+                chatMessages.removeChild(chatMessages.lastChild);
+                addMessage(aiResponse, 'ai');
+            } catch (error) {
+                console.error("Error fetching AI response:", error);
+                // Remove typing indicator and show error
+                chatMessages.removeChild(chatMessages.lastChild);
+                addMessage("Sorry, I'm having trouble connecting. Please try again later.", 'ai');
+            }
+        }
+        
+        async function getAIResponse(prompt) {
+            chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+
+            const payload = { contents: chatHistory };
+            const apiKey = ""; // API key is handled by the environment
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+            let response;
+            let result;
+            let retries = 3;
+            let delay = 1000;
+
+            for (let i = 0; i < retries; i++) {
+                try {
+                    response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (response.ok) {
+                        result = await response.json();
+                        break; // Success
+                    }
+                } catch (error) {
+                    console.error(`Attempt ${i + 1} failed:`, error);
+                }
+                await new Promise(res => setTimeout(res, delay));
+                delay *= 2; // Exponential backoff
+            }
+            
+            if (!result || !result.candidates || result.candidates.length === 0) {
+                 throw new Error("No response from AI");
+            }
+
+            const aiText = result.candidates[0].content.parts[0].text;
+            chatHistory.push({ role: "model", parts: [{ text: aiText }] });
+            return aiText;
+        }
+
     </script>
 </body>
 </html>
